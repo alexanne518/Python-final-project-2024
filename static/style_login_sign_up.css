@@ -1,0 +1,153 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Arial", sans-serif;
+    color: #602E22;
+}
+
+.navbar .container {
+    display: flex; /*put them in a row*/
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    width: 40px;
+}
+.navbar .main-menu ul{
+    display: flex; /*side by side*/
+}
+
+.navbar ul li a{
+    padding: 10px 20px;
+    display: block;
+    font-weight: 600;
+    transition: 0.5s; /*when u hover over it and it changes color to do it not so fast so it looks nicer*/
+}
+
+.navbar ul li a:hover{
+    color: #EBC6A7; /*idk if im gonna keep this color for the hover*/
+}
+
+/*style the nav bar*/
+.navbar {
+    background: #fff; /*idk if i want to keep it white*/
+    padding: 20px;
+}
+
+
+body{
+    height: 100vh; /*visual height*/
+    width: 100%;
+    background: #FEF4C9;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.login-box, .signUp-box{
+    background-color: #EBC6A7;
+    padding: 100px 100px 100px 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative; /*for icon later*/
+    width: 400px;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+.user-icon{
+    background: #C9E4E5;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top : -50px;
+}
+
+.user-icon i{
+    font-size: 40px;
+    color: #FDFBF8;
+}
+
+.login, .signUp{
+    width: 100%;
+}
+
+.form-group{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+::placeholder{
+    color: #7CB560;
+}
+
+input[type="text"].form-control, input[type="password"].form-control{
+    font-size: 16px;
+    outline: none;
+    width: calc(100% - 36px);
+    border: 2px solid #7CB560;
+    padding: 16px;
+    /*16 on both sides = 32 + border 2 on both sides so 4 =36*/
+    border-radius: 2px;
+    transition: all 0.3 ease; /*for hover*/
+}
+
+input[type="text"].form-control:hover, input[type="password"].form-control:hover{
+    border: 2px solid #93C664;
+}
+
+
+/*no foucus*/
+
+label{
+    display: flex;
+    align-items; center;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+label input[type="checkbox"]{
+    color: #602E22;
+    accent-color: #FEF4C9;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+button{
+    outline: none;
+    background: #93C664;
+    color: #fff;
+    padding: 16px;
+    display : block;
+    width: 100%;
+    border: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    cursor: pointer;
+    transition : all 0.3 ease;
+}
+
+button:hover{
+    box-shadow: 5px 5px 5px #7CB560;
+}
+
+a{
+    color: #FEF4C9;
+}

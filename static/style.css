@@ -1,0 +1,222 @@
+* /*everything*/{
+    box-sizing: border-box; /**/
+    margin:0; /*setting them both to 0 so that elements with padding wont have any to its easier to style*/
+    padding:0; /*so i can add the padding to everything i want*/
+    color: #602E22;
+}
+
+:root {
+    --primary-color: #C9E4E5; /*making a variable so i dont have to rewrite the color code evry time*/
+    /*idk if i want to keep these color*/
+    --light-color: #FEF4C9;
+    --dark-color #6O2E22;
+}
+
+@media (min-width: 1200px){
+    .child {
+        float:left;
+        width: 50%;
+    }
+}
+
+body{
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background: #FCFBF8; /*off white*/
+}
+a {
+    text-decoration: none; /*no underline*/
+}
+ul {
+    list-style:none ; /*no bullet points*/
+}
+img {
+    max-width: 100%; /*so that an img with stay inside a div*/
+}
+
+.navbar .container {
+    display: flex; /*put them in a row*/
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    width: 40px;
+}
+.navbar .main-menu ul{
+    display: flex; /*side by side*/
+}
+
+.navbar ul li a{
+    padding: 10px 20px;
+    display: block;
+    font-weight: 600;
+    transition: 0.5s; /*when u hover over it and it changes color to do it not so fast so it looks nicer*/
+}
+
+.navbar ul li a:hover{
+    color: #EBC6A7; /*idk if im gonna keep this color for the hover*/
+}
+
+/*style the nav bar*/
+.navbar {
+    background: #fff; /*idk if i want to keep it white*/
+    padding: 20px;
+}
+
+/*main*/
+.main {
+    margin-bottem: 50px;
+}
+
+
+.main-heading, .room-heading{
+    margin-left: 80px;
+}
+.main-btn, .room-btn{
+    margin-left: 80px;
+}
+
+.noteBook{
+    background: url('/static/images/note2.jpg') no-repeat;
+    background-size: contain;
+    background-position: center bottom;
+    height: 750px;
+}
+
+.note-title{
+    margin-left: 20%;
+    margin-top: 3%;
+}
+
+.list-tasks{
+    list-style-type: circle;
+    margin-top: 5%;
+    margin-left: 10%;
+}
+.list-tasks li:marker{
+    color: #602E22
+}
+
+/*would still have to add the notes at the bottom*/
+
+
+/*room*/
+.room-pic{
+    margin-bottem: 50px;
+    background: url('/static/images/room2.jpg') no-repeat;
+    background-size: contain;
+   background-position: center bottom;
+    height: 750px;
+}
+
+.room-content{ /*to put them virticale*/
+    padding: 10px 0 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto; /*middel*/
+    padding: 0 15px; /*0 top and bottem 15 left and right*/
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 20px;
+    background: var(--light-color);
+    color: #333;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+/*add these to btn classes to make then dark theme or light*/
+.btn-primary {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.btn-dark{
+    background: var(--dark-color);
+    color :#fff;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.large-text {
+    font-size: 2rem; /*1 rem = 16 2rem=32*/
+    line-height: 1.4;
+    font-weight: 600;
+    margin: 40 px 0 20px;
+}
+
+.mid-text {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    font-weight: normal;
+    margin: 20 px 0 10px;
+}
+
+.small-text {
+    font-size: 0.5rem;
+    line-height: 1.4;
+    font-weight: normal;
+    margin: 10 px 0 50px;
+}
+
+.text-center{
+    text-align: center;
+}
+
+/*add task, go threw and add stuff to make look more similar*/
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
