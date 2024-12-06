@@ -1,14 +1,14 @@
-project title: Grow your Mind
+project title: Task Tracker App
 
 project description:
 
-An assigmnet tracker webapp, where you can keep trake of all your assigment and tasks to-do, with another feature that u can turn on when studying to keep track of how long you foucus for. To help modivate students to study and do assigment another feature that helps modivate you is the insentive to grow a plant. The user will be able to chose a little plant when first logingin and the fruther they progress in thier studies and assigment the plant will grow.
+An task tracker webapp, where you can keep trake of all your atasks to-do, somewhere to keep all your tasks to help keep organiazed. with a log in that only shows the tasks you put in. 
 
 Main Idea:
-A fun take on a usual app to make studying more fun.
+Cute inviroment to keep trak of all tasks.
 
 Technologies:
-Flask, sql database, not sure of other technologies to use.
+Flask, sql database.
 
 Project Timeline:
 - Week 4: Project initialization and setup
