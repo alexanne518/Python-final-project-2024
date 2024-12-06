@@ -60,13 +60,14 @@ class DatabaseManager:
         VALUES (?, ?, ?);
         """
 
+        print(f"Inserting task: {task_name}, {task_description}, {user_id}")  #for Debugging
+
         try:
             with self.create_connection() as conn:
                 conn.execute(sql, (task_name, task_description, user_id))
                 conn.commit()
-                print("task added")
+                print("Task added successfully!")
                 return True
-
         except sqlite3.Error as e:
             print(f"Error adding task: {e}")
             return False
@@ -116,16 +117,60 @@ class DatabaseManager:
             print(f"Error retrieving users: {e}")
             return []
 
-    def get_tasks_for_user(self):
-        sql = "SELECT id, task_name, task_description FROM tasks WHERE user_id = ?" #not sure about the just 'id'
+    def get_tasks_for_user(self, user_id):
 
+
+        sql = "SELECT id, task_name, task_description FROM tasks WHERE user_id = ?"
         try:
             with self.create_connection() as conn:
-                cursor = conn.execute(sql, (id,))
-                return cursor.fetchall()
+                cursor = conn.execute(sql, (user_id,))
+                tasks = cursor.fetchall()  # Get all tasks for the given user_id
+                print(f"Tasks for user {user_id}: {tasks}")  # Debugging
+                return tasks
         except sqlite3.Error as e:
-            print(f"Error retrieving tasks from user: {e}")
+            print(f"Error retrieving tasks: {e}")
             return []
+
+
+    def get_task_by_id(self, task_id):
+        """Retrieve a task by its ID"""
+        sql = "SELECT id, task_name, task_description FROM tasks WHERE id = ?;"
+        try:
+            with self.create_connection() as conn:
+                cursor = conn.execute(sql, (task_id,))
+                task = cursor.fetchone()  # This will return a tuple (id, task_name, task_description)
+                return task
+        except sqlite3.Error as e:
+            print(f"Error retrieving task by ID: {e}")
+            return None
+
+    def update_task(self, task_id, task_name, task_description):
+        sql = """
+        UPDATE tasks
+        SET task_name = ?, task_description = ?
+        WHERE id = ?;
+        """
+        try:
+            with self.create_connection() as conn:
+                conn.execute(sql, (task_name, task_description, task_id))
+                conn.commit()
+                print("Task updated successfully!")
+                return True
+        except sqlite3.Error as e:
+            print(f"Error updating task: {e}")
+        return False
+
+    def delete_task(self, task_id):
+        sql = "DELETE FROM tasks WHERE id = ?;"
+        try:
+            with self.create_connection() as conn:
+                conn.execute(sql, (task_id,))
+                conn.commit()
+                print("Task deleted successfully!")
+                return True
+        except sqlite3.Error as e:
+            print(f"Error deleting task: {e}")
+            return False
 
 
 if __name__ == "__main__":

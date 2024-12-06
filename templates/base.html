@@ -1,105 +1,138 @@
-<!-- base.html -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Task Tracker App</title>
     <!--link to icons-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/notebook.css') }}">
     <!--link to icon that doesn't work-->
-    <link rel="shortcut icon" href="static/images/cat_icon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../static/images/cat_icon.ico" type="image/x-icon">
+    <style>
+        /* Initially hide the popup */
+        .popup {
+            display: none;
+        }
+
+    </style>
 </head>
 <body>
     <nav class="navbar">
-        <div class="container"> <!--make sure the browser doesn't go to wide-->
+        <div class="container">
             <div class="logo">
-                <a href="base.html">
-                    <img src="static/images/logo.png" alt="logo"/> <!--logo also dosnt work-->
+                <a href="{{ url_for('home') }}">
+                    <img src="../static/images/logo.png" alt="logo"/>
                 </a>
             </div>
             <div class="main-menu">
                 <ul>
-                    <li>
-                        <a href="base.html">Home</a>
-                    </li>
-                    <li>
-                        <a class="btn" href="/get_user_me"> <!--link dosnt work-->
-                            <i class="fas fa-user"></i> Log In <!--user to get the user icon-->
-                        </a>
-                    </li>
+                    {% if session.get('username') %}
+                         <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('login') }}">Log In</a></li>
+                        <li><a href="{{ url_for('register') }}">Register</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages" id="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
     <section class="parent">
         <section class="child main">
             <div class="container">
-                <div class="main-content">
-                    <h1 class="main-heading large-text">
-                        Organize All your work
-                    </h1>
-                    <div class="main-btn">
-                        <a href="#" class="btn btn-primary">Add</a>
+                <h1 class="main-heading large-text">
+                    Organize All your work
+                </h1>
+                <br>
+                <div class="main-btn">
+                    <!-- Button to open the popup -->
+                    <button class="open-popup btn-primary" onclick="openForm()">Add Task</button>
+                </div>
+                <br>
+                <!-- Popup form that will be hidden initially -->
+                <div class="popup" id="myForm">
+                    <form action="{{ url_for('add_task') }}" method="POST" class="form-container">
+                        <h1>Add Task</h1>
 
-                        <button class="open-popup" onclick="openForm">Add Task</button>
+                        <label for="task_name">Name</label>
+                        <input type="text" id="task_name" name="task_name" placeholder="Task name" required>
 
-                        <script>
-                            idfk why no work
-                            function openForm() {
-                            document.getElementById("myForm").style.display = "block";
-                            }
+                        <label for="task_description">Description</label>
+                        <input type="text" id="task_description" name="task_description" placeholder="Task description" required>
 
-                            function closeForm() {
-                            document.getElementById("myForm").style.display = "none";
-                            }
-                        </script>
+                        <button type="submit" class="btn">Add</button>
+                        <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
+                    </form>
+                </div>
 
-                        <div class="form-popup" id="myForm">
-                            <form action="/action_page.php" class="form-container">
-                                <h1>Add Task</h1>
+                <div class="notebook">
+                    {% if tasks %}
+                        <h2 class="note-title ">Your Tasks</h2>
+                        <div class="task-list">
+                            {% for task in tasks %}
+                                <div class="task-item">
+                                    <h3>{{ task[1] }}</h3> <!-- task[1] is task_name -->
+                                    <p>{{ task[2] }}</p> <!-- task[2] is task_description -->
+                                    <div class="task-footer">
+                                        <a href="{{ url_for('edit_task', task_id=task[0]) }}" class="btn btn-edit">Edit</a>
 
-                                <label for="taskName">Name</label>
-                                <input type="text" placeholder="Task name" required>
-
-                                <label for="taskDes">Description</label>
-                                <input type="text" placeholder="Task description" required>
-
-                                <button type="submit" class="btn">Add</button>
-                                <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
-                            </form>
+                                        <a href="{{ url_for('delete_task', task_id=task[0]) }}" class="btn btn-delete">Delete</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
-                    </div>
-                    <div class="noteBook">
-                        <br>
-                        <br>
-                        <h3 class="note-title mid-text"> my tasks</h3> <!--how to make it move with the background-->
-                        <br>
-                        <ul class="list-tasks">
-                            <li>task</li> <!--also make it move with th back groud-->
-                            <li>task</li>
-                        </ul>
-                    </div>
+                    {% else %}
+                        <h2 class="no-tasks">No tasks found</h2>
+                    {% endif %}
                 </div>
             </div>
         </section>
-        <br>
-        <section class="child room">
-            <div class="container">
-                    <h1 class="room-heading large-text">
-                        Take care of your plant
-                    </h1>
-                <div class="room-btn">
-                    <a href="#" class="btn btn-primary">Customize</a>
-                </div>
-                <div class="room-pic">
-                    <!--img src="/static/images/room2.jpg" alt="img" class="room" /-->
-                </div>
-            </div>
-        </section>
+
+<!--        <br>-->
+<!--        <section class="child room">-->
+<!--            <div class="container">-->
+<!--                <h1 class="room-heading large-text">-->
+<!--                    Take care of your plant-->
+<!--                </h1>-->
+<!--                <div class="room-btn">-->
+<!--                    <a href="#" class="btn btn-primary">Customize</a>-->
+<!--                </div>-->
+<!--                <div class="room-pic">-->
+<!--                    &lt;!&ndash;img src="/static/images/room2.jpg" alt="img" class="room" /&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
     </section>
+
     <footer>
         <p>Created with Flask</p>
     </footer>
+
+    <script>
+        // Open the form (popup)
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        // Close the form (popup)
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+         setTimeout(function () {
+            const flashMessages = document.getElementById('flash-messages');
+            if (flashMessages) {
+                flashMessages.style.display = 'none';
+            }
+        }, 5000);
+    </script>
 </body>
 </html>

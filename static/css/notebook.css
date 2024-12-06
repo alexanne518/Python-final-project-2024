@@ -1,0 +1,30 @@
+
+.notebook {
+    position: relative;
+    background: url('/static/images/newNoteBook.webp') no-repeat;
+    background-color: #F8E3C7;
+    background-size: contain;
+    background-position: left top;
+    height: 750px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.note-title {
+    position: absolute;
+    top: 2.7rem;
+    left: 7rem;
+}
+
+.task-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 9.5rem 1rem 0 1rem;
+}
+
+.no-tasks{
+    position: absolute;
+    top: 2.7rem;
+    left: 7rem;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Task - Task Tracker App</title>
+    <!-- Link to icons -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/edit.css') }}">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/cat_icon.ico') }}" type="image/x-icon">
+</head>
+<body>
+
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="base.html">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo"/>
+                </a>
+            </div>
+            <div class="main-menu">
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+
+                    {% if session.get('username') %}
+                         <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('login') }}">Log In</a></li>
+                        <li><a href="{{ url_for('register') }}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Edit Task Form -->
+    <div class="edit-task-container">
+        <h2>Edit Task</h2>
+        <form method="POST">
+            <label for="task_name">Task Name</label>
+            <input type="text" id="task_name" name="task_name" value="{{ task[1] }}" required>
+            <br>
+            <label for="task_description">Task Description</label>
+            <textarea id="task_description" name="task_description" required>{{ task[2] }}</textarea>
+            <br>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <div class="form-action-buttons">
+                <a href="{{ url_for('index') }}" class="btn cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <p>Created with Flask</p>
+    </footer>
+
+</body>
+</html>

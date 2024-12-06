@@ -1,0 +1,163 @@
+/* Edit page styles */
+
+* /*everything*/{
+    box-sizing: border-box; /**/
+    margin:0; /*setting them both to 0 so that elements with padding wont have any to its easier to style*/
+    padding:0; /*so i can add the padding to everything i want*/
+    color: #602E22;
+}
+
+:root {
+    --primary-color: #C9E4E5; /*making a variable so i dont have to rewrite the color code evry time*/
+    /*idk if i want to keep these color*/
+    --light-color: #FEF4C9;
+    --dark-color #6O2E22;
+}
+
+body{
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background: #FCFBF8; /*off white*/
+}
+a {
+    text-decoration: none; /*no underline*/
+}
+ul {
+    list-style:none ; /*no bullet points*/
+}
+img {
+    max-width: 100%; /*so that an img with stay inside a div*/
+}
+
+.btn , button{
+    display: inline-block;
+    padding: 13px 20px;
+    background: var(--light-color);
+    color: #333;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.navbar .container {
+    display: flex; /*put them in a row*/
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    width: 40px;
+}
+.navbar .main-menu ul{
+    display: flex; /*side by side*/
+}
+
+.navbar ul li a{
+    padding: 10px 20px;
+    display: block;
+    font-weight: 600;
+    transition: 0.5s; /*when u hover over it and it changes color to do it not so fast so it looks nicer*/
+}
+
+.navbar ul li a:hover{
+    color: #EBC6A7; /*idk if im gonna keep this color for the hover*/
+}
+
+/*style the nav bar*/
+.navbar {
+    background: #fff; /*idk if i want to keep it white*/
+    padding: 20px;
+}
+
+.edit-task-container {
+    background: var(--light-color); /* Background color */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 50px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* subtle shadow */
+}
+
+.edit-task-container h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--dark-color); /* Darker text color */
+}
+
+.edit-task-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit-task-form label {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+.edit-task-form input[type="text"],
+.edit-task-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    color: var(--dark-color);
+}
+
+.edit-task-form input[type="text"]:focus,
+.edit-task-form textarea:focus {
+    border-color: #93C664; /* Greenish color when focused */
+    outline: none;
+    background-color: #e6f4e1;
+}
+
+.edit-task-form button {
+    padding: 12px 25px;
+    background-color: #93C664;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+.edit-task-form button:hover {
+    background-color: #78a746; /* Darker green on hover */
+}
+
+.form-action-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 15px; /* Add space between buttons */
+}
+
+.form-action-buttons a {
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #743014;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.form-action-buttons a:hover {
+    background-color: #5d240e;
+}

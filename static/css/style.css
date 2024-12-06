@@ -12,51 +12,42 @@
     --dark-color #6O2E22;
 }
 
-@media (min-width: 1200px){
-    .child {
-        float:left;
-        width: 50%;
-    }
-}
-
 body{
     font-family: "Arial", sans-serif;
     font-size: 16px;
     line-height: 1.5;
     background: #FCFBF8; /*off white*/
 }
+
 a {
     text-decoration: none; /*no underline*/
 }
+
 ul {
     list-style:none ; /*no bullet points*/
 }
-img {
-    max-width: 100%; /*so that an img with stay inside a div*/
+
+.flash-messages {
+    margin: 20px;
+    padding: 10px;
 }
 
-.navbar .container {
-    display: flex; /*put them in a row*/
-    justify-content: space-between;
-    align-items: center;
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-.logo{
-    width: 40px;
-}
-.navbar .main-menu ul{
-    display: flex; /*side by side*/
-}
-
-.navbar ul li a{
-    padding: 10px 20px;
-    display: block;
-    font-weight: 600;
-    transition: 0.5s; /*when u hover over it and it changes color to do it not so fast so it looks nicer*/
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
 }
 
-.navbar ul li a:hover{
-    color: #EBC6A7; /*idk if im gonna keep this color for the hover*/
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
 }
 
 /*style the nav bar*/
@@ -65,59 +56,44 @@ img {
     padding: 20px;
 }
 
-/*main*/
-.main {
-    margin-bottem: 50px;
-}
-
-
-.main-heading, .room-heading{
-    margin-left: 80px;
-}
-.main-btn, .room-btn{
-    margin-left: 80px;
-}
-
-.noteBook{
-    background: url('/static/images/note2.jpg') no-repeat;
-    background-size: contain;
-    background-position: center bottom;
-    height: 750px;
-}
-
-.note-title{
-    margin-left: 20%;
-    margin-top: 3%;
-}
-
-.list-tasks{
-    list-style-type: circle;
-    margin-top: 5%;
-    margin-left: 10%;
-}
-.list-tasks li:marker{
-    color: #602E22
-}
-
-/*would still have to add the notes at the bottom*/
-
-
-/*room*/
-.room-pic{
-    margin-bottem: 50px;
-    background: url('/static/images/room2.jpg') no-repeat;
-    background-size: contain;
-   background-position: center bottom;
-    height: 750px;
-}
-
-.room-content{ /*to put them virticale*/
-    padding: 10px 0 40px;
-    display: flex;
-    flex-direction: column;
+.navbar .container {
+    display: flex; /*put them in a row*/
+    justify-content: space-between;
     align-items: center;
 }
 
+.navbar .main-menu ul {
+    display: flex; /*side by side*/
+}
+
+.navbar ul li a {
+    padding: 10px 20px;
+    display: block;
+    font-weight: 600;
+    transition: 0.5s; /*when u hover over it and it changes color to do it not so fast so it looks nicer*/
+}
+
+.navbar ul li a:hover {
+    color: #EBC6A7; /*idk if im gonna keep this color for the hover*/
+}
+
+.logo{
+    width: 40px;
+}
+
+.logo img {
+    width: 100%;
+}
+
+.btn-edit, .btn-edit:hover {
+    color: white;
+    background-color: #93C664;
+}
+
+.btn-delete, .btn-delete:hover {
+    color: white;
+    background-color: #743014;
+}
 
 .container {
     max-width: 1100px;
@@ -125,7 +101,7 @@ img {
     padding: 0 15px; /*0 top and bottem 15 left and right*/
 }
 
-.btn {
+.btn , button{
     display: inline-block;
     padding: 13px 20px;
     background: var(--light-color);
@@ -149,7 +125,7 @@ img {
     color :#fff;
 }
 
-.btn-block {
+.some-component .btn-block {
     display: block;
     width: 100%;
 }
